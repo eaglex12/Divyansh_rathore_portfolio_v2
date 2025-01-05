@@ -1,5 +1,4 @@
 {
-	"homepage": "https://github.com/eaglex12/Divyansh_rathore_portfolio_v2",
 	"name": "my-app",
 	"version": "0.1.0",
 	"private": true,
@@ -7,8 +6,7 @@
 		"dev": "next dev",
 		"build": "next build",
 		"start": "next start",
-		"lint": "next lint",
-		"deploy": "gh-pages -d build"
+		"lint": "next lint"
 	},
 	"dependencies": {
 		"@emailjs/browser": "^4.4.1",

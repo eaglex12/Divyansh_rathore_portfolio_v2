@@ -9,7 +9,7 @@ import emailjs from "@emailjs/browser";
 import { toast } from "react-toastify"; // Import the toast function
 import "react-toastify/dist/ReactToastify.css"; // Import toast styles
 
-type SubmitStatus = "success" | "error" | null;
+// type SubmitStatus = "success" | "error" | null;
 
 interface FormData extends Record<string, unknown> {
 	from_name: string;
@@ -25,7 +25,7 @@ const Contact: React.FC = () => {
 	});
 
 	const [isSubmitting, setIsSubmitting] = useState(false);
-	const [submitStatus, setSubmitStatus] = useState<SubmitStatus>(null);
+	// const [submitStatus, setSubmitStatus] = useState<SubmitStatus>(null);
 
 	const handleChange = (
 		e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -37,14 +37,14 @@ const Contact: React.FC = () => {
 	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		setIsSubmitting(true);
-		setSubmitStatus(null);
+		// setSubmitStatus(null);
 
 		const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
 		const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
 		const userId = process.env.NEXT_PUBLIC_EMAILJS_USER_ID;
 
 		if (!serviceId || !templateId || !userId) {
-			setSubmitStatus("error");
+			// setSubmitStatus("error");
 			toast.error("Missing EmailJS configuration!");
 			setIsSubmitting(false);
 			return;
@@ -58,11 +58,11 @@ const Contact: React.FC = () => {
 				userId
 			);
 			console.log("🚀 ~ handleSubmit ~ response:", response);
-			setSubmitStatus("success");
+			// setSubmitStatus("success");
 			setFormData({ from_name: "", email_id: "", message: "" });
 			toast.success("Message sent successfully!");
 		} catch (error) {
-			setSubmitStatus("error");
+			// setSubmitStatus("error");
 			toast.error("Failed to send message. Please try again.");
 			console.error("Failed to send message:", error);
 		} finally {

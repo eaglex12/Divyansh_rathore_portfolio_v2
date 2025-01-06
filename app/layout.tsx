@@ -7,7 +7,7 @@ import Footer from "@/components/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-	title: "Neubrutalism Portfolio",
+	title: "Divyansh Singh Rathore Portfolio",
 	description: "A bold and raw portfolio showcasing my skills and projects",
 };
 

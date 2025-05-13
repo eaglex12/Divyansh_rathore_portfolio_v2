@@ -1,75 +1,111 @@
 "use client";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
+import { FaLocationArrow } from "react-icons/fa6";
+import MagicButton from "@/components/ui/MagicButton";
+import { Spotlight } from "@/components/ui/spotlight-new";
+import { TypewriterEffect } from "@/components/ui/typewriter-effect";
+import { motion } from "framer-motion";
 
-const About = () => {
+export const About = () => {
+	const words = [
+		{
+			text: "Code",
+		},
+		{
+			text: "Maverick",
+		},
+		{
+			text: "&",
+			className: "text-purple-500 dark:text-purple-400",
+		},
+		{
+			text: "Builder",
+			className: "text-purple-500 dark:text-purple-400",
+		},
+	];
+
 	return (
-		<section id="about" className="relative">
-			<h2 className="text-4xl font-bold mb-6 bg-[#FFF700] inline-block px-2 transform -rotate-1">
-				About Me
-			</h2>
-			<div className="flex flex-col md:flex-row gap-8">
-				<Card className="border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] md:w-1/3 hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-shadow">
-					<CardContent className="p-6">
-						<div className="relative w-full aspect-square mb-4">
-							<Image
-								src="/About/Me.jpeg?height=400&width=400"
+		<div id="home" className="relative min-h-screen w-full bg-black text-white">
+			{/* Background effects */}
+			<div className="absolute inset-0 overflow-hidden">
+				<div className="absolute inset-0 bg-grid-white/[0.05] [mask-image:radial-gradient(ellipse_at_center,transparent_0%,black_70%)]" />
+				<Spotlight
+					className="-top-40 left-0 md:left-60 opacity-20"
+					fill="purple"
+				/>
+				<Spotlight
+					className="-top-40 right-0 md:right-60 opacity-20"
+					fill="blue"
+				/>
+			</div>
+
+			{/* Content container - now using flex-row for side-by-side layout */}
+			<div className="relative z-10 flex min-h-screen items-center justify-center px-4 py-20">
+				<motion.div
+					initial={{ opacity: 0 }}
+					animate={{ opacity: 1 }}
+					transition={{ duration: 0.8 }}
+					className="flex max-w-6xl flex-col items-center gap-12 md:flex-row md:items-start md:gap-16 lg:gap-24"
+				>
+					{/* Left side: Profile image and name */}
+					<motion.div
+						initial={{ opacity: 0, x: -20 }}
+						animate={{ opacity: 1, x: 0 }}
+						transition={{ duration: 0.8 }}
+						className="flex flex-col items-center md:sticky md:top-24"
+					>
+						{/* Profile image with glow effect */}
+						<div className="relative mb-6">
+							<div className="absolute -inset-0.5 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 opacity-75 blur-sm" />
+							<img
+								src="/About/Me.jpeg"
 								alt="Divyansh Singh Rathore"
-								layout="fill"
-								objectFit="cover"
-								className="rounded-full border-4 border-black"
+								className="relative h-64 w-64 rounded-full border-2 border-purple-500/50 object-cover"
 							/>
 						</div>
-						<h3 className="text-2xl font-bold text-center">
+
+						{/* Name */}
+						<h2 className="text-center text-sm font-light uppercase tracking-[0.2em] text-gray-400">
 							Divyansh Singh Rathore
-						</h3>
-						<p className="text-xl font-semibold text-center mb-4">
-							Software Developer
+						</h2>
+					</motion.div>
+
+					{/* Right side: Typewriter, bio and button */}
+					<motion.div
+						initial={{ opacity: 0, x: 20 }}
+						animate={{ opacity: 1, x: 0 }}
+						transition={{ duration: 0.8, delay: 0.2 }}
+						className="flex flex-col items-center md:items-start md:pt-12"
+					>
+						{/* Typewriter effect */}
+						<div className="mb-6 md:mb-8">
+							<TypewriterEffect
+								className="text-center text-4xl font-bold md:text-left md:text-5xl lg:text-6xl"
+								words={words}
+							/>
+						</div>
+
+						{/* Bio */}
+						<p className="mb-8 max-w-xl text-center text-lg font-light leading-relaxed text-gray-300 md:text-left md:text-xl">
+							Hi, I&apos;m Divyansh, a proficient Web Developer and AI
+							Enthusiast passionate about creating innovative digital
+							experiences.
 						</p>
-					</CardContent>
-				</Card>
-				<Card className="border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] md:w-2/3 hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-shadow">
-					<CardContent className="p-6 font-bold">
-						<p className="text-lg mb-4 ">
-							Hello, it&apos;s a pleasure to meet you all. I am a passionate
-							Software Development Engineer with a robust foundation in computer
-							science and engineering, currently working at basys.ai. My
-							experience spans developing innovative software solutions,
-							including integrating advanced AI systems and automating processes
-							to enhance efficiency.
-						</p>
-						<p className="text-lg mb-4">
-							With hands-on experience in full-stack development, I have
-							successfully contributed to projects that improve user experiences
-							and streamline complex workflows. I am driven by a strong
-							commitment to solving challenging problems and am eager to bring
-							my technical expertise and enthusiasm for innovation to new and
-							exciting projects.
-						</p>
-						<p className="text-lg mb-6">
-							As a proficient full-stack developer, I harness a comprehensive
-							skill set that encompasses both backend and frontend technologies.
-							Alongside my prowess in development, I boast a solid foundation in
-							Data Structures and Algorithms, enabling me to engineer robust and
-							efficient solutions.
-						</p>
-						<Button
-							onClick={() => {
+
+						{/* Button */}
+						<MagicButton
+							title="Lets Connect"
+							icon={<FaLocationArrow />}
+							position="right"
+							handleClick={() => {
 								window.open(
-									"https://drive.google.com/file/d/1aqCdw3Z6T3z58b1VWMwL36KMXgN1b8WW/view"
+									"https://www.linkedin.com/in/divyansh-singh-rathore-4934b8203/",
+									"_blank"
 								);
 							}}
-						>
-							<h2 className="text-2xl font-bold mb-6 bg-[#FF90E8] hover:bg-[#FF69B4] inline-block px-2 transform -rotate-1 border-2 border-black">
-								Check out My Resume
-							</h2>
-						</Button>
-					</CardContent>
-				</Card>
+						></MagicButton>
+					</motion.div>
+				</motion.div>
 			</div>
-		</section>
+		</div>
 	);
 };
-
-export default About;
